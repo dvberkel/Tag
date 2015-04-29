@@ -1,0 +1,16 @@
+{
+  "name": "Tag",
+  "version": "1.0.0",
+  "description": "A simple game accompanying the blog post Real-time Communication with SocketIO.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "game",
+    "tag",
+    "blog"
+  ],
+  "author": "Daan van Berkel <daan.v.berkel.1980@gmail.com> (http://dvberkel.nl/)",
+  "license": "MIT"
+}
