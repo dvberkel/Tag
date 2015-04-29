@@ -10,4 +10,4 @@
         requestAnimationFrame(animate);
     }
     animate();
-})(tag
+})(tag);
