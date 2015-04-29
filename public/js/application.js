@@ -6,8 +6,8 @@
     var view = new tag.GameView(game, canvas);
 
     function animate(){
-	view.update();
-	requestAnimationFrame(animate);
+        view.update();
+        requestAnimationFrame(animate);
     }
     animate();
 })(tag
