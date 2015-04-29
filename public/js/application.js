@@ -1,4 +1,5 @@
 (function(tag){
+    var socket = io();
     var canvas = document.getElementById('playground');
 
     var game = new tag.Game();
