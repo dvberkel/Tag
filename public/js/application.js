@@ -12,7 +12,9 @@
     animate();
 
     function mouseMoveHandler(event){
-        console.log(event);
+        var state = game.state;
+        state.tagger = { 'x': event.x, 'y': event.y };
+        game.updateState(state);
     }
     canvas.addEventListener('mouseenter', function(){
         canvas.addEventListener('mousemove', mouseMoveHandler);

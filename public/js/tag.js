@@ -31,8 +31,8 @@
     }
     GameView.prototype.update = function(){
         this.clear()
-        this.paintPlayers();
         this.paintTagger();
+        this.paintPlayers();
     };
     GameView.prototype.clear = function(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
