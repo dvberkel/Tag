@@ -13,7 +13,11 @@
     animate();
 
     function mouseMoveHandler(event){
-        var state = game.state;
+        socket.emit('position', {
+            'x': event.pageX - this.offsetLeft,
+            'y': event.pageY - this.offsetTop
+        });
+        var state = game.state ;
         state.tagger = {
             'x': event.pageX - this.offsetLeft,
             'y': event.pageY - this.offsetTop

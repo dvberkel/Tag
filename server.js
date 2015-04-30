@@ -23,4 +23,8 @@ io.on('connection', function(socket){
     socket.on('disconnect', function(){
         console.log('%s disconnected', socket.id);
     });
+
+    socket.on('position', function(data){
+        console.log('%s is at (%s, %s)', socket.id, data.x, data.y);
+    })
 });
