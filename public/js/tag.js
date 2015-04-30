@@ -41,31 +41,22 @@
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     };
     GameView.prototype.paintTagged = function(){
-        var ctx = this.context; var options = this.options.tagged;
-        ctx.fillStyle = options.fillStyle;
-        ctx.beginPath();
-        this.game.state.tagged.forEach(function(tag){
-            ctx.arc(tag.x, tag.y, options.radius, 0, 2 * Math.PI);
-        });
-        ctx.fill();
+        this.paintObjects(this.game.state.tagged, this.options.tagged);
     };
     GameView.prototype.paintPlayers = function(){
-        var ctx = this.context; var options = this.options.players;
+        this.paintObjects(this.game.state.players, this.options.players);
+    };
+    GameView.prototype.paintTagger = function(){
+        this.paintObjects(this.game.state.tagger, this.options.tagger);
+    }
+    GameView.prototype.paintObjects = function(objects, options){
+        var ctx = this.context;
         ctx.fillStyle = options.fillStyle;
         ctx.beginPath();
-        this.game.state.players.forEach(function(player){
-            ctx.arc(player.x, player.y, options.radius, 0, 2 * Math.PI);
+        objects.forEach(function(object){
+            ctx.arc(object.x, object.y, options.radius, 0, 2 * Math.PI);
         });
         ctx.fill();
     };
-    GameView.prototype.paintTagger = function(){
-        var ctx = this.context; var options = this.options.tagger;
-        ctx.fillStyle = options.fillStyle;
-        ctx.beginPath();
-        this.game.state.tagger.forEach(function(tagger){
-            ctx.arc(tagger.x, tagger.y, options.radius, 0, 2 * Math.PI);
-        });
-        ctx.fill();
-    }
 
 })(window.tag = window.tag || {});
