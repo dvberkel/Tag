@@ -18,10 +18,10 @@
             'y': event.pageY - this.offsetTop
         });
         var state = game.state ;
-        state.tagger = {
+        state.tagger = [{
             'x': event.pageX - this.offsetLeft,
             'y': event.pageY - this.offsetTop
-        };
+        }];
         game.updateState(state);
     }
     canvas.addEventListener('mouseenter', function(){

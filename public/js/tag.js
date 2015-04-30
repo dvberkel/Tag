@@ -14,9 +14,9 @@
 
     var Game = tag.Game = function(){
         this.updateState({
-            'tagger': { 'x': 100, 'y': 100 },
+            'tagger': [ { 'x': 100, 'y': 100 } ],
             'players': [ { 'x': 300, 'y': 300 } ],
-            'tagged': [ { 'x': 20, 'y': 50 }, { 'x': 80, 'y': 30 }]
+            'tagged': [ { 'x': 20, 'y': 50 }, { 'x': 80, 'y': 30 } ]
         })
     };
     Game.prototype.updateState = function(state) {
@@ -59,10 +59,12 @@
         ctx.fill();
     };
     GameView.prototype.paintTagger = function(){
-        var ctx = this.context; var tagger = this.game.state.tagger; var options = this.options.tagger;
+        var ctx = this.context; var options = this.options.tagger;
         ctx.fillStyle = options.fillStyle;
         ctx.beginPath();
-        ctx.arc(tagger.x, tagger.y, options.radius, 0, 2 * Math.PI);
+        this.game.state.tagger.forEach(function(tagger){
+            ctx.arc(tagger.x, tagger.y, options.radius, 0, 2 * Math.PI);
+        });
         ctx.fill();
     }
 
