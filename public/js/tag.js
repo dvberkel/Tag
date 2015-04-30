@@ -43,12 +43,12 @@
     GameView.prototype.paintTagged = function(){
         this.paintObjects(this.game.state.tagged, this.options.tagged);
     };
-    GameView.prototype.paintPlayers = function(){
-        this.paintObjects(this.game.state.players, this.options.players);
-    };
     GameView.prototype.paintTagger = function(){
         this.paintObjects(this.game.state.tagger, this.options.tagger);
     }
+    GameView.prototype.paintPlayers = function(){
+        this.paintObjects(this.game.state.players, this.options.players);
+    };
     GameView.prototype.paintObjects = function(objects, options){
         var ctx = this.context;
         ctx.fillStyle = options.fillStyle;
@@ -58,5 +58,4 @@
         });
         ctx.fill();
     };
-
 })(window.tag = window.tag || {});
