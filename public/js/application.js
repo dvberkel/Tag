@@ -14,7 +14,10 @@
 
     function mouseMoveHandler(event){
         var state = game.state;
-        state.tagger = { 'x': event.x, 'y': event.y };
+        state.tagger = {
+            'x': event.pageX - this.offsetLeft,
+            'y': event.pageY - this.offsetTop
+        };
         game.updateState(state);
     }
     canvas.addEventListener('mouseenter', function(){
