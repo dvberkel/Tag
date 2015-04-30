@@ -17,6 +17,16 @@ server.listen(3000, function(){
     console.log('Listening on http://%s:%s', host, port);
 });
 
+var state = {
+    'tagger': [ { 'x': 100, 'y': 100 } ],
+    'players': [ { 'x': 300, 'y': 300 } ],
+    'tagged': [ { 'x': 20, 'y': 50 }, { 'x': 80, 'y': 30 } ]
+}
+function emitGameState() {
+    io.emit('state', state);
+};
+setInterval(emitGameState, 1000/60);
+
 io.on('connection', function(socket){
     console.log('%s connected', socket.id);
 
@@ -26,5 +36,6 @@ io.on('connection', function(socket){
 
     socket.on('position', function(data){
         console.log('%s is at (%s, %s)', socket.id, data.x, data.y);
+        state.tagger = [ data ];
     })
 });

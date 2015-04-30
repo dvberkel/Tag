@@ -14,9 +14,9 @@
 
     var Game = tag.Game = function(){
         this.updateState({
-            'tagger': [ { 'x': 100, 'y': 100 } ],
-            'players': [ { 'x': 300, 'y': 300 } ],
-            'tagged': [ { 'x': 20, 'y': 50 }, { 'x': 80, 'y': 30 } ]
+            'tagger': [],
+            'players': [],
+            'tagged': []
         })
     };
     Game.prototype.updateState = function(state) {
