@@ -63,4 +63,27 @@ describe('Game', function(){
         });
     });
 
+    describe('tick', function(){
+        var id = 'socket-id-1';
+        var game;
+
+        beforeEach(function(){
+            game = new Game();
+            game.addPlayer(id);
+            game.update(id, { x: 0, y: 0 });
+        });
+
+        it('should provide players with current position if it is missing', function(){
+            game.tick();
+
+            var data = undefined;
+            game.forEachPlayer(function(player){
+                data = player;
+            });
+
+            expect(data.currentX).to.equal(0);
+            expect(data.currentY).to.equal(0);
+        })
+    });
+
 });
