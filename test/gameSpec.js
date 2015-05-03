@@ -107,14 +107,25 @@ describe('Game', function(){
         beforeEach(function(){
             game = new Game();
             game.addPlayer(id);
-            game.update(id, { x: 0, y: 0 });
-            game.tick();
+            game.update(id, { currentX: 0, currentY: 0 });
         });
 
         it('first player should be tagger', function(){
             var state = game.state();
 
+            expect(state.tagger.length).to.equal(1);
             expect(state.tagger[0]).to.eql({ id: id, x: 0, y: 0 });
+        });
+
+        it('second player should be player', function(){
+            var playerId = 'player'
+            game.addPlayer('player');
+            game.update(playerId, { currentX: 10, currentY: 10 });
+
+            var state = game.state();
+
+            expect(state.players.length).to.equal(1);
+            expect(state.players[0]).to.eql({ id: playerId, x: 10, y: 10 });
         });
     });
 });
