@@ -68,7 +68,7 @@ describe('Game', function(){
         var game;
 
         beforeEach(function(){
-            game = new Game();
+            game = new Game({velocity: 7});
             game.addPlayer(id);
             game.update(id, { x: 0, y: 0 });
         });
@@ -83,7 +83,21 @@ describe('Game', function(){
 
             expect(data.currentX).to.equal(0);
             expect(data.currentY).to.equal(0);
-        })
+        });
+
+        it('should move players towards target', function(){
+            game.tick(); // for creating a currentX and currentY
+            game.update(id, { x: 10, y: 0 });
+            game.tick();
+
+            var data = undefined;
+            game.forEachPlayer(function(player){
+                data = player;
+            });
+
+            expect(data.currentX).to.equal(7);
+            expect(data.currentY).to.equal(0);
+        });
     });
 
 });
