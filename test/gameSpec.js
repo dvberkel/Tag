@@ -70,10 +70,10 @@ describe('Game', function(){
         beforeEach(function(){
             game = new Game({velocity: 7});
             game.addPlayer(id);
-            game.update(id, { x: 0, y: 0 });
         });
 
         it('should provide players with current position if it is missing', function(){
+            game.update(id, { x: 0, y: 0 });
             game.tick();
 
             var data = undefined;
@@ -86,7 +86,7 @@ describe('Game', function(){
         });
 
         it('should move players towards target', function(){
-            game.tick(); // for creating a currentX and currentY
+            game.update(id, { currentX: 0, currentY: 0 });
             game.update(id, { x: 10, y: 0 });
             game.tick();
 
@@ -100,4 +100,21 @@ describe('Game', function(){
         });
     });
 
+    describe('state', function(){
+        var id = 'socket-id-1';
+        var game;
+
+        beforeEach(function(){
+            game = new Game();
+            game.addPlayer(id);
+            game.update(id, { x: 0, y: 0 });
+            game.tick();
+        });
+
+        it('first player should be tagger', function(){
+            var state = game.state();
+
+            expect(state.tagger[0]).to.eql({ id: id, x: 0, y: 0 });
+        });
+    });
 });

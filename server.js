@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var socketio = require('socket.io');
+var Game = require('./lib/game');
 var app = express();
 
 app.use(express.static('public'));
@@ -17,25 +18,24 @@ server.listen(3000, function(){
     console.log('Listening on http://%s:%s', host, port);
 });
 
-var state = {
-    'tagger': [ { 'x': 100, 'y': 100 } ],
-    'players': [ { 'x': 300, 'y': 300 } ],
-    'tagged': [ { 'x': 20, 'y': 50 }, { 'x': 80, 'y': 30 } ]
-}
+var game = new Game();
 function emitGameState() {
-    io.emit('state', state);
+    game.tick();
+    io.emit('state', game.state());
 };
 setInterval(emitGameState, 1000/60);
 
 io.on('connection', function(socket){
     console.log('%s connected', socket.id);
+    game.addPlayer(socket.id);
 
     socket.on('disconnect', function(){
         console.log('%s disconnected', socket.id);
+        game.removePlayer(socket.id);
     });
 
     socket.on('position', function(data){
         console.log('%s is at (%s, %s)', socket.id, data.x, data.y);
-        state.tagger = [ data ];
+        game.update(socket.id, data);
     })
 });
