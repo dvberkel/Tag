@@ -101,20 +101,20 @@ describe('Game', function(){
     });
 
     describe('state', function(){
-        var id = 'socket-id-1';
+        var taggerId = 'socket-id-1';
         var game;
 
         beforeEach(function(){
             game = new Game();
-            game.addPlayer(id);
-            game.update(id, { currentX: 0, currentY: 0 });
+            game.addPlayer(taggerId);
+            game.update(taggerId, { currentX: 0, currentY: 0 });
         });
 
         it('first player should be tagger', function(){
             var state = game.state();
 
             expect(state.tagger.length).to.equal(1);
-            expect(state.tagger[0]).to.eql({ id: id, x: 0, y: 0 });
+            expect(state.tagger[0]).to.eql({ id: taggerId, x: 0, y: 0 });
         });
 
         it('second player should be player', function(){
@@ -126,6 +126,18 @@ describe('Game', function(){
 
             expect(state.players.length).to.equal(1);
             expect(state.players[0]).to.eql({ id: playerId, x: 10, y: 10 });
+        });
+
+        it('new tagger should be chosen when first tagger is removed', function(){
+            var playerId = 'player'
+            game.addPlayer('player');
+            game.update(playerId, { currentX: 10, currentY: 10 });
+            game.removePlayer(taggerId);
+
+            var state = game.state();
+
+            expect(state.tagger.length).to.equal(1);
+            expect(state.tagger[0].id).to.equal(playerId);
         });
     });
 });
