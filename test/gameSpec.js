@@ -68,7 +68,9 @@ describe('Game', function(){
         var game;
 
         beforeEach(function(){
-            game = new Game({ velocity: 4, tagger: { boost: 2 }});
+            game = new Game({ velocity: 4,
+                              tagger: { boost: 2, radius: 10 },
+                              players: { radius: 5 }});
             game.addPlayer(id);
         });
 
@@ -97,6 +99,23 @@ describe('Game', function(){
 
             expect(data.currentX).to.equal(6);
             expect(data.currentY).to.equal(0);
+        });
+
+        it('should tag players within tagger range', function(){
+            var playerId = 'playerId';
+            game.update(id, { currentX: 0, currentY: 0, x: 0, y: 0 });
+            game.addPlayer(playerId);
+            game.update(playerId, { currentX: 10, currentY: 0, x: 10, y: 0});
+            game.tick()
+
+            var data;
+            game.forEachPlayer(function(player){
+                if (player.id == playerId) {
+                    data = player;
+                }
+            });
+
+            expect(data.isTagged).to.be.ok
         });
     });
 
