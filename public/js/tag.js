@@ -5,12 +5,13 @@
             for (var key in object){
                 if (result[key] == undefined) {
                     result[key] = object[key];
+                } else if(typeof result[key] == 'object' && typeof object[key] == 'object') {
+                    result[key] = extend(result[key], object[key]);
                 }
             }
         });
         return result;
-    }
-
+    };
 
     var Game = tag.Game = function(){
         this.updateState({
@@ -24,7 +25,8 @@
     }
 
     var GameView = tag.GameView = function(game, canvas, options){
-        this.options = extend(options || {}, { 'players' : { 'fillStyle': 'blue', 'radius': 10 }}
+        this.options = extend(options || {}
+                              , { 'players' : { 'fillStyle': 'blue', 'radius': 10 }}
                               , { 'tagger': { 'fillStyle': 'orange', 'radius': 50 }}
                               , { 'tagged': { 'fillStyle': 'gray', 'radius': 5 }});
         this.game = game;
