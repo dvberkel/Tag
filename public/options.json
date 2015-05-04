@@ -1,0 +1,6 @@
+{
+    "velocity": 5,
+    "tagger": {
+	"boost": 3
+    }
+}

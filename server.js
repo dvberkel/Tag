@@ -2,6 +2,7 @@ var express = require('express');
 var http = require('http');
 var socketio = require('socket.io');
 var Game = require('./lib/game');
+var options = require('./public/options.json');
 var app = express();
 
 app.use(express.static('public'));
@@ -18,7 +19,7 @@ server.listen(3000, function(){
     console.log('Listening on http://%s:%s', host, port);
 });
 
-var game = new Game();
+var game = new Game(options);
 function emitGameState() {
     game.tick();
     io.emit('state', game.state());
