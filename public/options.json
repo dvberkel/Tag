@@ -1,6 +1,16 @@
 {
     "velocity": 5,
+    "players" : {
+	"fillStyle": "blue",
+	"radius": 10
+    },
     "tagger": {
+	"fillStyle": "orange",
+	"radius": 50,
 	"boost": 3
+    },
+    "tagged": {
+	"fillStyle": "gray",
+	"radius": 5
     }
 }
