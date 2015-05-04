@@ -13,17 +13,18 @@
     console.log(options);
 
     var game = new tag.Game();
-    var view = new tag.GameView(game, canvas, options);
-    function animate(){
-        view.update();
-        requestAnimationFrame(animate);
-    }
-    animate();
 
     var socket = io();
     socket.on('state', function(state){
         game.updateState(state);
     });
+
+    var view = new tag.GameView(game, canvas, socket, options);
+    function animate(){
+        view.update();
+        requestAnimationFrame(animate);
+    }
+    animate();
 
     function mouseMoveHandler(event){
         socket.emit('position', {

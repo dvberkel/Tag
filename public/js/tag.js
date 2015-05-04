@@ -24,13 +24,14 @@
         this.state = state;
     }
 
-    var GameView = tag.GameView = function(game, canvas, options){
+    var GameView = tag.GameView = function(game, canvas, socket, options){
         this.options = extend(options || {}
                               , { 'players' : { 'fillStyle': 'blue', 'radius': 10 }}
                               , { 'tagger': { 'fillStyle': 'orange', 'radius': 50 }}
                               , { 'tagged': { 'fillStyle': 'gray', 'radius': 5 }});
         this.game = game;
         this.canvas = canvas;
+        this.socket = socket;
         this.context = this.canvas.getContext('2d');
     }
     GameView.prototype.update = function(){
@@ -52,12 +53,17 @@
         this.paintObjects(this.game.state.players, this.options.players);
     };
     GameView.prototype.paintObjects = function(objects, options){
+        var socketId = this.socket.id;
         var ctx = this.context;
-        ctx.fillStyle = options.fillStyle;
-        ctx.beginPath();
         objects.forEach(function(object){
+            if (object.id == socketId) {
+                ctx.fillStyle = this.options.fillStyle;
+            } else {
+                ctx.fillStyle = options.fillStyle;
+            }
+            ctx.beginPath();
             ctx.arc(object.x, object.y, options.radius, 0, 2 * Math.PI);
-        });
-        ctx.fill();
+            ctx.fill();
+        }.bind(this));
     };
 })(window.tag = window.tag || {});

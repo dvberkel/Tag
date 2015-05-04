@@ -1,5 +1,6 @@
 {
     "velocity": 5,
+    "fillStyle": "red",
     "players" : {
 	"fillStyle": "blue",
 	"radius": 10
