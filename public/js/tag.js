@@ -26,6 +26,7 @@
 
     var GameView = tag.GameView = function(game, canvas, socket, options){
         this.options = extend(options || {}
+                              , { 'width': 640, 'height': 640 }
                               , { 'players' : { 'fillStyle': 'blue', 'radius': 10 }}
                               , { 'tagger': { 'fillStyle': 'orange', 'radius': 50 }}
                               , { 'tagged': { 'fillStyle': 'gray', 'radius': 5 }});
@@ -33,7 +34,12 @@
         this.canvas = canvas;
         this.socket = socket;
         this.context = this.canvas.getContext('2d');
+        this.initialize();
     }
+    GameView.prototype.initialize = function(){
+        this.canvas.width = this.options.width;
+        this.canvas.height = this.options.height;
+    };
     GameView.prototype.update = function(){
         this.clear()
         this.paintTagged();
