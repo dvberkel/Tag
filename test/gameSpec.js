@@ -68,7 +68,7 @@ describe('Game', function(){
         var game;
 
         beforeEach(function(){
-            game = new Game({velocity: 7});
+            game = new Game({ velocity: 4, tagger: { boost: 2 }});
             game.addPlayer(id);
         });
 
@@ -95,7 +95,7 @@ describe('Game', function(){
                 data = player;
             });
 
-            expect(data.currentX).to.equal(7);
+            expect(data.currentX).to.equal(6);
             expect(data.currentY).to.equal(0);
         });
     });
