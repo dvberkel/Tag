@@ -3,6 +3,8 @@ Tag
 
 A simple game accompanying the blog post Real-time Communication with SocketIO.
 
+![A Game of Tag](https://raw.githubusercontent.com/dvberkel/Tag/master/public/image/tag.png "A Game of Tag")
+
 Setup
 -----
 
