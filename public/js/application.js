@@ -14,12 +14,7 @@
 
     var game = new tag.Game();
 
-    var socket = io();
-    socket.on('state', function(state){
-        game.updateState(state);
-    });
-
-    var view = new tag.GameView(game, canvas, socket, options);
+    var view = new tag.GameView(game, canvas, undefined, options);
     function animate(){
         view.update();
         requestAnimationFrame(animate);
@@ -27,7 +22,7 @@
     animate();
 
     function mouseMoveHandler(event){
-        socket.emit('position', {
+        console.log({
             'x': event.pageX - this.offsetLeft,
             'y': event.pageY - this.offsetTop
         });

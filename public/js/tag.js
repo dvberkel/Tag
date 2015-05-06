@@ -32,7 +32,7 @@
                               , { 'tagged': { 'fillStyle': 'gray', 'radius': 5 }});
         this.game = game;
         this.canvas = canvas;
-        this.socket = socket;
+        this.socket = socket || { id: 0 };
         this.context = this.canvas.getContext('2d');
         this.initialize();
     }
