@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "A simple game accompanying the blog post Real-time Communication with SocketIO.",
+  "repository": "https://github.com/dvberkel/Tag.git",
   "main": "server.js",
   "scripts": {
     "game": "node server.js",
