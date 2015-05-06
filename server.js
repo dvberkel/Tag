@@ -38,5 +38,5 @@ io.on('connection', function(socket){
     socket.on('position', function(data){
         console.log('%s is at (%s, %s)', socket.id, data.x, data.y);
         game.update(socket.id, data);
-    })
+    });
 });
